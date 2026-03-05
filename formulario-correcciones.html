@@ -3,55 +3,147 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario de Correcciones</title>
+  <title>Correcciones · NGE Tarjetas Digitales</title>
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body { background: #f3f4f6; font-family: Arial, sans-serif; }
-    .campo { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px; }
-    .boton { background: #5d3a1a; color: white; padding: 15px; border: none; border-radius: 5px; font-weight: bold; width: 100%; }
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f3f4f6;
+    }
+    
+    .card-nge {
+      background: white;
+      border-radius: 30px;
+      border: 3px solid #5d3a1a;
+      box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2);
+    }
+    
+    .input-nge {
+      border: 2px solid #e3c9a0;
+      border-radius: 40px;
+      padding: 12px 20px;
+      width: 100%;
+      transition: all 0.3s;
+    }
+    
+    .input-nge:focus {
+      border-color: #5d3a1a;
+      box-shadow: 0 0 0 3px rgba(93,58,26,0.2);
+      outline: none;
+    }
+    
+    .btn-nge {
+      background: #5d3a1a;
+      color: white;
+      border: 2px solid #e3c9a0;
+      border-radius: 60px;
+      padding: 14px 28px;
+      font-weight: bold;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .btn-nge:hover {
+      background: #e3c9a0;
+      color: #5d3a1a;
+    }
   </style>
 </head>
-<body>
-<div style="max-width: 800px; margin: auto; padding: 20px;">
-  <div style="background: white; border-radius: 20px; padding: 20px;">
-    <h1 style="color: #e3c9a0; text-align: center;">📋 FORMULARIO DE CORRECCIONES</h1>
-    <form name="correcciones" method="POST" data-netlify="true">
-      <input type="hidden" name="form-name" value="correcciones">
+<body class="min-h-screen flex items-center justify-center p-4">
+
+<div class="max-w-2xl w-full">
+  
+  <!-- TARJETA -->
+  <div class="card-nge overflow-hidden">
+    
+    <!-- ENCABEZADO -->
+    <div class="bg-gradient-to-r from-[#5d3a1a] to-[#7a4f2a] p-6 text-center">
+      <h1 class="font-['Playfair_Display'] text-4xl font-bold" style="color: #e3c9a0;">
+        <i class="fas fa-edit mr-2"></i> SOLICITUD DE CAMBIOS
+      </h1>
+      <p class="text-white mt-2">Para tu tarjeta digital</p>
+    </div>
+    
+    <!-- FORMULARIO -->
+    <div class="p-6">
       
-      <label>Nombre completo*</label>
-      <input class="campo" type="text" name="nombre" required>
+      <!-- INSTRUCCIONES -->
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded">
+        <p class="text-blue-800">Recibirás respuesta en máximo 24 horas por WhatsApp.</p>
+      </div>
       
-      <label>WhatsApp*</label>
-      <input class="campo" type="tel" name="telefono" required>
+      <form name="correcciones" method="POST" data-netlify="true" enctype="multipart/form-data">
+        <input type="hidden" name="form-name" value="correcciones">
+        
+        <!-- NOMBRE -->
+        <div class="mb-4">
+          <label class="block font-semibold mb-2">Nombre completo *</label>
+          <input class="input-nge" type="text" name="nombre" required>
+        </div>
+        
+        <!-- WHATSAPP -->
+        <div class="mb-4">
+          <label class="block font-semibold mb-2">WhatsApp *</label>
+          <input class="input-nge" type="tel" name="telefono" required>
+        </div>
+        
+        <!-- CORREO -->
+        <div class="mb-4">
+          <label class="block font-semibold mb-2">Correo electrónico *</label>
+          <input class="input-nge" type="email" name="email" required>
+        </div>
+        
+        <!-- NEGOCIO -->
+        <div class="mb-4">
+          <label class="block font-semibold mb-2">Nombre del negocio *</label>
+          <input class="input-nge" type="text" name="negocio" required>
+        </div>
+        
+        <!-- TIPO DE CAMBIO -->
+        <div class="mb-4">
+          <label class="block font-semibold mb-2">Tipo de cambio *</label>
+          <select class="input-nge bg-white" name="tipo_cambio" required>
+            <option value="">Selecciona</option>
+            <option value="texto">📝 Texto</option>
+            <option value="imagen">🖼️ Imagen</option>
+            <option value="precio">💰 Precio</option>
+            <option value="seccion">➕ Sección</option>
+            <option value="color">🎨 Color</option>
+            <option value="otro">🔧 Otro</option>
+          </select>
+        </div>
+        
+        <!-- DESCRIPCIÓN -->
+        <div class="mb-4">
+          <label class="block font-semibold mb-2">Descripción del cambio *</label>
+          <textarea class="input-nge" name="descripcion" rows="4" required></textarea>
+        </div>
+        
+        <!-- ARCHIVO -->
+        <div class="mb-6">
+          <label class="block font-semibold mb-2">Adjuntar imagen (opcional)</label>
+          <input class="input-nge bg-white" type="file" name="adjunto" accept="image/*,.pdf">
+          <p class="text-xs text-gray-500 mt-1">Máx. 5MB · jpg, png, pdf</p>
+        </div>
+        
+        <!-- BOTÓN -->
+        <button class="btn-nge" type="submit">
+          <i class="fas fa-paper-plane mr-2"></i> ENVIAR SOLICITUD
+        </button>
+      </form>
       
-      <label>Correo electrónico*</label>
-      <input class="campo" type="email" name="email" required>
-      
-      <label>Nombre del negocio*</label>
-      <input class="campo" type="text" name="negocio" required>
-      
-      <label>URL de tu tarjeta digital</label>
-      <input class="campo" type="url" name="url_sitio" placeholder="https://tusitio.netlify.app">
-      
-      <label>Tipo de cambio*</label>
-      <select class="campo" name="tipo_cambio" required>
-        <option value="">Selecciona</option>
-        <option value="texto">📝 Cambiar texto</option>
-        <option value="imagen">🖼️ Cambiar imagen</option>
-        <option value="precio">💰 Actualizar precio</option>
-        <option value="seccion">➕ Agregar sección</option>
-        <option value="color">🎨 Cambiar color</option>
-        <option value="otro">🔧 Otro</option>
-      </select>
-      
-      <label>Describe el cambio*</label>
-      <textarea class="campo" name="descripcion" rows="4" required></textarea>
-      
-      <label>Adjunta imagen (opcional)</label>
-      <input class="campo" type="file" name="adjunto" accept="image/*,.pdf">
-      
-      <button class="boton" type="submit">ENVIAR SOLICITUD</button>
-    </form>
+      <!-- PIE -->
+      <p class="text-xs text-gray-400 text-center mt-4">
+        <i class="fas fa-crown text-yellow-500 mr-1"></i>
+        NGE Tarjetas Digitales
+      </p>
+    </div>
   </div>
 </div>
 </body>
